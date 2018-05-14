@@ -1,0 +1,50 @@
+﻿@using LibraryProject.Models
+@model LoginModel
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Comsats University Liabrary Mangment System</title>
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
+    <!-- icons -->
+    <link href="~/Content/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/fonts/material-design-icons/material-icon.css" rel="stylesheet" type="text/css" />
+    <!-- bootstrap -->
+    <link href="~/Content/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- style -->
+    <link rel="stylesheet" href="~/Content/assets/css/pages/extra_pages.css">
+    <!-- favicon -->
+   </head>
+<body>
+    <div class="form-title">
+        <h1>Login Form</h1>
+    </div>
+    <!-- Login Form-->
+    <div class="login-form text-center">
+        <div class="toggle">
+            <i class="fa fa-close"></i>
+        </div>
+        <div class="form formLogin">
+            <h2>Login to your account</h2>
+            <form action="/Site/verfiyAdmin" method="post">
+                <input type="text" placeholder="Username" name="email"/>
+                <input type="password" placeholder="Password" name="password"/>
+             
+                <input type="submit" class="Button" value="Login"/>
+               
+            </form>
+        </div>
+    
+    </div>
+    <!-- start js include path -->
+    <script src="~/Content/assets/plugins/jquery/jquery.min.js"></script>
+
+    <script src="~/Content/assets/js/pages/extra-pages/pages.js"></script>
+    <!-- end js include path -->
+</body>
+
+</html>

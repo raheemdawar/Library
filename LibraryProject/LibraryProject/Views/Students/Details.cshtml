@@ -1,0 +1,75 @@
+﻿@model LibraryProject.DataBase.Student
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StudentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudentName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudentRegistrationNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudentRegistrationNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudentEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudentEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudentPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudentPassword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudentMobileNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudentMobileNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Student_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

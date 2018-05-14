@@ -1,0 +1,456 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LiabraryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="adminID" />
+          </Key>
+          <Property Name="adminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adminName" Type="nvarchar" MaxLength="500" />
+          <Property Name="adminEmail" Type="nvarchar" MaxLength="500" />
+          <Property Name="adminPassword" Type="nvarchar" MaxLength="500" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="BookPlace">
+          <Key>
+            <PropertyRef Name="BookPlaceID" />
+          </Key>
+          <Property Name="BookPlaceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FKBookID" Type="int" />
+          <Property Name="FKPlaceID" Type="int" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="ExtraLocationInfo" Type="nchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Books">
+          <Key>
+            <PropertyRef Name="BookID" />
+          </Key>
+          <Property Name="BookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookName" Type="nvarchar" MaxLength="100" />
+          <Property Name="BookDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="BookArthor" Type="nvarchar" MaxLength="100" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="FK_BookCatagory" Type="int" />
+        </EntityType>
+        <EntityType Name="Catagory">
+          <Key>
+            <PropertyRef Name="CatagoryID" />
+          </Key>
+          <Property Name="CatagoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CatagoryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="IssuedBooks">
+          <Key>
+            <PropertyRef Name="IssuedBookID" />
+          </Key>
+          <Property Name="IssuedBookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FKBookID" Type="int" />
+          <Property Name="FKStudentID" Type="int" />
+          <Property Name="createDate" Type="datetime" />
+          <Property Name="isActive" Type="nchar" MaxLength="10" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Place">
+          <Key>
+            <PropertyRef Name="PlaceID" />
+          </Key>
+          <Property Name="PlaceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlaceName" Type="nvarchar" MaxLength="500" />
+          <Property Name="PlaceLocation" Type="nvarchar" MaxLength="500" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Student_ID" />
+          </Key>
+          <Property Name="Student_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StudentRegistrationNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="StudentEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="StudentPassword" Type="nvarchar" MaxLength="50" />
+          <Property Name="StudentMobileNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_BookPlace_Books">
+          <End Role="Books" Type="Self.Books" Multiplicity="0..1" />
+          <End Role="BookPlace" Type="Self.BookPlace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="BookPlace">
+              <PropertyRef Name="FKBookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookPlace_Place">
+          <End Role="Place" Type="Self.Place" Multiplicity="0..1" />
+          <End Role="BookPlace" Type="Self.BookPlace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Place">
+              <PropertyRef Name="PlaceID" />
+            </Principal>
+            <Dependent Role="BookPlace">
+              <PropertyRef Name="FKPlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Books_Catagory">
+          <End Role="Catagory" Type="Self.Catagory" Multiplicity="0..1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catagory">
+              <PropertyRef Name="CatagoryID" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="FK_BookCatagory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IssuedBooks_IssuedBooks">
+          <End Role="Books" Type="Self.Books" Multiplicity="0..1" />
+          <End Role="IssuedBooks" Type="Self.IssuedBooks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="IssuedBooks">
+              <PropertyRef Name="FKBookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IssuedBooks_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="IssuedBooks" Type="Self.IssuedBooks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Student_ID" />
+            </Principal>
+            <Dependent Role="IssuedBooks">
+              <PropertyRef Name="FKStudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LiabraryModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookPlace" EntityType="Self.BookPlace" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Catagory" EntityType="Self.Catagory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IssuedBooks" EntityType="Self.IssuedBooks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Place" EntityType="Self.Place" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BookPlace_Books" Association="Self.FK_BookPlace_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="BookPlace" EntitySet="BookPlace" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookPlace_Place" Association="Self.FK_BookPlace_Place">
+            <End Role="Place" EntitySet="Place" />
+            <End Role="BookPlace" EntitySet="BookPlace" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Books_Catagory" Association="Self.FK_Books_Catagory">
+            <End Role="Catagory" EntitySet="Catagory" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IssuedBooks_IssuedBooks" Association="Self.FK_IssuedBooks_IssuedBooks">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="IssuedBooks" EntitySet="IssuedBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IssuedBooks_Student" Association="Self.FK_IssuedBooks_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="IssuedBooks" EntitySet="IssuedBooks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LiabraryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="adminID" />
+          </Key>
+          <Property Name="adminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adminName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="adminEmail" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="adminPassword" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="BookPlace">
+          <Key>
+            <PropertyRef Name="BookPlaceID" />
+          </Key>
+          <Property Name="BookPlaceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FKBookID" Type="Int32" />
+          <Property Name="FKPlaceID" Type="Int32" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="ExtraLocationInfo" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_BookPlace_Books" FromRole="BookPlace" ToRole="Books" />
+          <NavigationProperty Name="Place" Relationship="Self.FK_BookPlace_Place" FromRole="BookPlace" ToRole="Place" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="BookID" />
+          </Key>
+          <Property Name="BookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BookDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="BookArthor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="FK_BookCatagory" Type="Int32" />
+          <NavigationProperty Name="BookPlaces" Relationship="Self.FK_BookPlace_Books" FromRole="Books" ToRole="BookPlace" />
+          <NavigationProperty Name="Catagory" Relationship="Self.FK_Books_Catagory" FromRole="Books" ToRole="Catagory" />
+          <NavigationProperty Name="IssuedBooks" Relationship="Self.FK_IssuedBooks_IssuedBooks" FromRole="Books" ToRole="IssuedBooks" />
+        </EntityType>
+        <EntityType Name="Catagory">
+          <Key>
+            <PropertyRef Name="CatagoryID" />
+          </Key>
+          <Property Name="CatagoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CatagoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="Books" Relationship="Self.FK_Books_Catagory" FromRole="Catagory" ToRole="Books" />
+        </EntityType>
+        <EntityType Name="IssuedBook">
+          <Key>
+            <PropertyRef Name="IssuedBookID" />
+          </Key>
+          <Property Name="IssuedBookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FKBookID" Type="Int32" />
+          <Property Name="FKStudentID" Type="Int32" />
+          <Property Name="createDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_IssuedBooks_IssuedBooks" FromRole="IssuedBooks" ToRole="Books" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_IssuedBooks_Student" FromRole="IssuedBooks" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Place">
+          <Key>
+            <PropertyRef Name="PlaceID" />
+          </Key>
+          <Property Name="PlaceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlaceName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PlaceLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="BookPlaces" Relationship="Self.FK_BookPlace_Place" FromRole="Place" ToRole="BookPlace" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Student_ID" />
+          </Key>
+          <Property Name="Student_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudentRegistrationNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudentEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudentPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudentMobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="IssuedBooks" Relationship="Self.FK_IssuedBooks_Student" FromRole="Student" ToRole="IssuedBooks" />
+        </EntityType>
+        <Association Name="FK_BookPlace_Books">
+          <End Role="Books" Type="Self.Book" Multiplicity="0..1" />
+          <End Role="BookPlace" Type="Self.BookPlace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="BookPlace">
+              <PropertyRef Name="FKBookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookPlace_Place">
+          <End Role="Place" Type="Self.Place" Multiplicity="0..1" />
+          <End Role="BookPlace" Type="Self.BookPlace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Place">
+              <PropertyRef Name="PlaceID" />
+            </Principal>
+            <Dependent Role="BookPlace">
+              <PropertyRef Name="FKPlaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Books_Catagory">
+          <End Role="Catagory" Type="Self.Catagory" Multiplicity="0..1" />
+          <End Role="Books" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catagory">
+              <PropertyRef Name="CatagoryID" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="FK_BookCatagory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IssuedBooks_IssuedBooks">
+          <End Role="Books" Type="Self.Book" Multiplicity="0..1" />
+          <End Role="IssuedBooks" Type="Self.IssuedBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="IssuedBooks">
+              <PropertyRef Name="FKBookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IssuedBooks_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="IssuedBooks" Type="Self.IssuedBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Student_ID" />
+            </Principal>
+            <Dependent Role="IssuedBooks">
+              <PropertyRef Name="FKStudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LiabraryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="BookPlaces" EntityType="Self.BookPlace" />
+          <EntitySet Name="Books" EntityType="Self.Book" />
+          <EntitySet Name="Catagories" EntityType="Self.Catagory" />
+          <EntitySet Name="IssuedBooks" EntityType="Self.IssuedBook" />
+          <EntitySet Name="Places" EntityType="Self.Place" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <AssociationSet Name="FK_BookPlace_Books" Association="Self.FK_BookPlace_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="BookPlace" EntitySet="BookPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookPlace_Place" Association="Self.FK_BookPlace_Place">
+            <End Role="Place" EntitySet="Places" />
+            <End Role="BookPlace" EntitySet="BookPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Books_Catagory" Association="Self.FK_Books_Catagory">
+            <End Role="Catagory" EntitySet="Catagories" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IssuedBooks_IssuedBooks" Association="Self.FK_IssuedBooks_IssuedBooks">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="IssuedBooks" EntitySet="IssuedBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IssuedBooks_Student" Association="Self.FK_IssuedBooks_Student">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="IssuedBooks" EntitySet="IssuedBooks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LiabraryModelStoreContainer" CdmEntityContainer="LiabraryEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="LiabraryModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="adminID" ColumnName="adminID" />
+                <ScalarProperty Name="adminName" ColumnName="adminName" />
+                <ScalarProperty Name="adminEmail" ColumnName="adminEmail" />
+                <ScalarProperty Name="adminPassword" ColumnName="adminPassword" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookPlaces">
+            <EntityTypeMapping TypeName="LiabraryModel.BookPlace">
+              <MappingFragment StoreEntitySet="BookPlace">
+                <ScalarProperty Name="BookPlaceID" ColumnName="BookPlaceID" />
+                <ScalarProperty Name="FKBookID" ColumnName="FKBookID" />
+                <ScalarProperty Name="FKPlaceID" ColumnName="FKPlaceID" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="ExtraLocationInfo" ColumnName="ExtraLocationInfo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="LiabraryModel.Book">
+              <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="BookName" ColumnName="BookName" />
+                <ScalarProperty Name="BookDescription" ColumnName="BookDescription" />
+                <ScalarProperty Name="BookArthor" ColumnName="BookArthor" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="FK_BookCatagory" ColumnName="FK_BookCatagory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Catagories">
+            <EntityTypeMapping TypeName="LiabraryModel.Catagory">
+              <MappingFragment StoreEntitySet="Catagory">
+                <ScalarProperty Name="CatagoryID" ColumnName="CatagoryID" />
+                <ScalarProperty Name="CatagoryName" ColumnName="CatagoryName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IssuedBooks">
+            <EntityTypeMapping TypeName="LiabraryModel.IssuedBook">
+              <MappingFragment StoreEntitySet="IssuedBooks">
+                <ScalarProperty Name="IssuedBookID" ColumnName="IssuedBookID" />
+                <ScalarProperty Name="FKBookID" ColumnName="FKBookID" />
+                <ScalarProperty Name="FKStudentID" ColumnName="FKStudentID" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Places">
+            <EntityTypeMapping TypeName="LiabraryModel.Place">
+              <MappingFragment StoreEntitySet="Place">
+                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+                <ScalarProperty Name="PlaceName" ColumnName="PlaceName" />
+                <ScalarProperty Name="PlaceLocation" ColumnName="PlaceLocation" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="LiabraryModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Student_ID" ColumnName="Student_ID" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="StudentRegistrationNumber" ColumnName="StudentRegistrationNumber" />
+                <ScalarProperty Name="StudentEmail" ColumnName="StudentEmail" />
+                <ScalarProperty Name="StudentPassword" ColumnName="StudentPassword" />
+                <ScalarProperty Name="StudentMobileNumber" ColumnName="StudentMobileNumber" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

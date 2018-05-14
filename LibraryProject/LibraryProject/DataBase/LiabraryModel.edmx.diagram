@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="628e634a1a1547b792bd9bafe619059e" Name="Diagram1">
+        <EntityTypeShape EntityType="LiabraryModel.Admin" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LiabraryModel.BookPlace" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LiabraryModel.Book" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LiabraryModel.Catagory" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="LiabraryModel.IssuedBook" Width="1.5" PointX="8.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LiabraryModel.Place" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="LiabraryModel.Student" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
+        <AssociationConnector Association="LiabraryModel.FK_BookPlace_Books" ManuallyRouted="false" />
+        <AssociationConnector Association="LiabraryModel.FK_BookPlace_Place" ManuallyRouted="false" />
+        <AssociationConnector Association="LiabraryModel.FK_Books_Catagory" ManuallyRouted="false" />
+        <AssociationConnector Association="LiabraryModel.FK_IssuedBooks_IssuedBooks" ManuallyRouted="false" />
+        <AssociationConnector Association="LiabraryModel.FK_IssuedBooks_Student" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
