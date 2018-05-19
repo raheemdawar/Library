@@ -333,6 +333,7 @@
     <Content Include="Content\fonts\material-design-icons\material-icon.css" />
     <Content Include="Content\fonts\simple-line-icons\fonts\Simple-Line-Iconsb26c.svg" />
     <Content Include="Content\fonts\simple-line-icons\simple-line-icons.min.css" />
+    <Content Include="DataBase\DB Script\db.sql" />
     <Content Include="DataBase\LiabraryModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>LiabraryModel.Context.cs</LastGenOutput>
