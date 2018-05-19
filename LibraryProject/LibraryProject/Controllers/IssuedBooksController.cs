@@ -12,107 +12,116 @@ using LibraryProject.DataBase;
 namespace LibraryProject.Controllers
 {
     [AuthorizationFilter]
-    public class StudentsController : Controller
+    public class IssuedBooksController : Controller
     {
         private LiabraryEntities db = new LiabraryEntities();
 
-        // GET: Students
+        // GET: IssuedBooks
         public ActionResult Index()
         {
-            return View(db.Students.ToList());
+            var issuedBooks = db.IssuedBooks.Include(i => i.Book).Include(i => i.Student);
+            return View(issuedBooks.ToList());
         }
 
-        // GET: Students/Details/5
+        // GET: IssuedBooks/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
-            if (student == null)
+            IssuedBook issuedBook = db.IssuedBooks.Find(id);
+            if (issuedBook == null)
             {
                 return HttpNotFound();
             }
-            return View(student);
+            return View(issuedBook);
         }
 
-        // GET: Students/Create
+        // GET: IssuedBooks/Create
         public ActionResult Create()
         {
+            ViewBag.FKBookID = new SelectList(db.Books, "BookID", "BookName");
+            ViewBag.FKStudentID = new SelectList(db.Students, "Student_ID", "StudentName");
             return View();
         }
 
-        // POST: Students/Create
+        // POST: IssuedBooks/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Student_ID,StudentName,StudentRegistrationNumber,StudentEmail,StudentPassword,StudentMobileNumber,isActive,CreateDate")] Student student)
+        public ActionResult Create([Bind(Include = "IssuedBookID,FKBookID,FKStudentID,createDate,isActive,Status")] IssuedBook issuedBook)
         {
             if (ModelState.IsValid)
             {
-                db.Students.Add(student);
+                db.IssuedBooks.Add(issuedBook);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(student);
+            ViewBag.FKBookID = new SelectList(db.Books, "BookID", "BookName", issuedBook.FKBookID);
+            ViewBag.FKStudentID = new SelectList(db.Students, "Student_ID", "StudentName", issuedBook.FKStudentID);
+            return View(issuedBook);
         }
 
-        // GET: Students/Edit/5
+        // GET: IssuedBooks/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
-            if (student == null)
+            IssuedBook issuedBook = db.IssuedBooks.Find(id);
+            if (issuedBook == null)
             {
                 return HttpNotFound();
             }
-            return View(student);
+            ViewBag.FKBookID = new SelectList(db.Books, "BookID", "BookName", issuedBook.FKBookID);
+            ViewBag.FKStudentID = new SelectList(db.Students, "Student_ID", "StudentName", issuedBook.FKStudentID);
+            return View(issuedBook);
         }
 
-        // POST: Students/Edit/5
+        // POST: IssuedBooks/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Student_ID,StudentName,StudentRegistrationNumber,StudentEmail,StudentPassword,StudentMobileNumber,isActive,CreateDate")] Student student)
+        public ActionResult Edit([Bind(Include = "IssuedBookID,FKBookID,FKStudentID,createDate,isActive,Status")] IssuedBook issuedBook)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(student).State = EntityState.Modified;
+                db.Entry(issuedBook).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(student);
+            ViewBag.FKBookID = new SelectList(db.Books, "BookID", "BookName", issuedBook.FKBookID);
+            ViewBag.FKStudentID = new SelectList(db.Students, "Student_ID", "StudentName", issuedBook.FKStudentID);
+            return View(issuedBook);
         }
 
-        // GET: Students/Delete/5
+        // GET: IssuedBooks/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
-            if (student == null)
+            IssuedBook issuedBook = db.IssuedBooks.Find(id);
+            if (issuedBook == null)
             {
                 return HttpNotFound();
             }
-            return View(student);
+            return View(issuedBook);
         }
 
-        // POST: Students/Delete/5
+        // POST: IssuedBooks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Student student = db.Students.Find(id);
-            db.Students.Remove(student);
+            IssuedBook issuedBook = db.IssuedBooks.Find(id);
+            db.IssuedBooks.Remove(issuedBook);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

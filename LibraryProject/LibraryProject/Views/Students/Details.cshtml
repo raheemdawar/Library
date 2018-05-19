@@ -5,14 +5,14 @@
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Student  Details</h2>
 
 <div>
-    <h4>Student</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.StudentName)
+            @Html.DisplayName("Student Name")
         </dt>
 
         <dd>
@@ -20,7 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.StudentRegistrationNumber)
+            @Html.DisplayName("Student Registration Number")
         </dt>
 
         <dd>
@@ -28,7 +28,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.StudentEmail)
+            @Html.DisplayName("Student Email Address")
         </dt>
 
         <dd>
@@ -36,7 +36,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.StudentPassword)
+            @Html.DisplayName("Student Password")
         </dt>
 
         <dd>
@@ -44,7 +44,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.StudentMobileNumber)
+            @Html.DisplayName("Student Mobile Number")
         </dt>
 
         <dd>
@@ -52,20 +52,14 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.isActive)
+            @Html.DisplayName("is Student Bann")
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.isActive)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreateDate)
-        </dd>
+        
 
     </dl>
 </div>

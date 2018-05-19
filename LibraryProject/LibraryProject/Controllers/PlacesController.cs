@@ -12,107 +12,107 @@ using LibraryProject.DataBase;
 namespace LibraryProject.Controllers
 {
     [AuthorizationFilter]
-    public class StudentsController : Controller
+    public class PlacesController : Controller
     {
         private LiabraryEntities db = new LiabraryEntities();
 
-        // GET: Students
+        // GET: Places
         public ActionResult Index()
         {
-            return View(db.Students.ToList());
+            return View(db.Places.ToList());
         }
 
-        // GET: Students/Details/5
+        // GET: Places/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
-            if (student == null)
+            Place place = db.Places.Find(id);
+            if (place == null)
             {
                 return HttpNotFound();
             }
-            return View(student);
+            return View(place);
         }
 
-        // GET: Students/Create
+        // GET: Places/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Students/Create
+        // POST: Places/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Student_ID,StudentName,StudentRegistrationNumber,StudentEmail,StudentPassword,StudentMobileNumber,isActive,CreateDate")] Student student)
+        public ActionResult Create([Bind(Include = "PlaceID,PlaceName,PlaceLocation,isActive")] Place place)
         {
             if (ModelState.IsValid)
             {
-                db.Students.Add(student);
+                db.Places.Add(place);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(student);
+            return View(place);
         }
 
-        // GET: Students/Edit/5
+        // GET: Places/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
-            if (student == null)
+            Place place = db.Places.Find(id);
+            if (place == null)
             {
                 return HttpNotFound();
             }
-            return View(student);
+            return View(place);
         }
 
-        // POST: Students/Edit/5
+        // POST: Places/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Student_ID,StudentName,StudentRegistrationNumber,StudentEmail,StudentPassword,StudentMobileNumber,isActive,CreateDate")] Student student)
+        public ActionResult Edit([Bind(Include = "PlaceID,PlaceName,PlaceLocation,isActive")] Place place)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(student).State = EntityState.Modified;
+                db.Entry(place).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(student);
+            return View(place);
         }
 
-        // GET: Students/Delete/5
+        // GET: Places/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
-            if (student == null)
+            Place place = db.Places.Find(id);
+            if (place == null)
             {
                 return HttpNotFound();
             }
-            return View(student);
+            return View(place);
         }
 
-        // POST: Students/Delete/5
+        // POST: Places/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Student student = db.Students.Find(id);
-            db.Students.Remove(student);
+            Place place = db.Places.Find(id);
+            db.Places.Remove(place);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

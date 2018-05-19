@@ -1,0 +1,49 @@
+﻿@model LibraryProject.DataBase.BookPlace
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+
+
+<div>
+ 
+    <hr />
+    <dl class="dl-horizontal">
+      
+
+        <dd>
+            @Html.DisplayFor(model => model.isActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Extra Location Info")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExtraLocationInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Book Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book.BookName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("PlaceName")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Place.PlaceName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BookPlaceID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

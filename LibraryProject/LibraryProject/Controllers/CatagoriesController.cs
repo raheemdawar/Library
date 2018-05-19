@@ -12,107 +12,107 @@ using LibraryProject.DataBase;
 namespace LibraryProject.Controllers
 {
     [AuthorizationFilter]
-    public class StudentsController : Controller
+    public class CatagoriesController : Controller
     {
         private LiabraryEntities db = new LiabraryEntities();
 
-        // GET: Students
+        // GET: Catagories
         public ActionResult Index()
         {
-            return View(db.Students.ToList());
+            return View(db.Catagories.ToList());
         }
 
-        // GET: Students/Details/5
+        // GET: Catagories/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
-            if (student == null)
+            Catagory catagory = db.Catagories.Find(id);
+            if (catagory == null)
             {
                 return HttpNotFound();
             }
-            return View(student);
+            return View(catagory);
         }
 
-        // GET: Students/Create
+        // GET: Catagories/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Students/Create
+        // POST: Catagories/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Student_ID,StudentName,StudentRegistrationNumber,StudentEmail,StudentPassword,StudentMobileNumber,isActive,CreateDate")] Student student)
+        public ActionResult Create([Bind(Include = "CatagoryID,CatagoryName,Description,isActive")] Catagory catagory)
         {
             if (ModelState.IsValid)
             {
-                db.Students.Add(student);
+                db.Catagories.Add(catagory);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(student);
+            return View(catagory);
         }
 
-        // GET: Students/Edit/5
+        // GET: Catagories/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
-            if (student == null)
+            Catagory catagory = db.Catagories.Find(id);
+            if (catagory == null)
             {
                 return HttpNotFound();
             }
-            return View(student);
+            return View(catagory);
         }
 
-        // POST: Students/Edit/5
+        // POST: Catagories/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Student_ID,StudentName,StudentRegistrationNumber,StudentEmail,StudentPassword,StudentMobileNumber,isActive,CreateDate")] Student student)
+        public ActionResult Edit([Bind(Include = "CatagoryID,CatagoryName,Description,isActive")] Catagory catagory)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(student).State = EntityState.Modified;
+                db.Entry(catagory).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(student);
+            return View(catagory);
         }
 
-        // GET: Students/Delete/5
+        // GET: Catagories/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Students.Find(id);
-            if (student == null)
+            Catagory catagory = db.Catagories.Find(id);
+            if (catagory == null)
             {
                 return HttpNotFound();
             }
-            return View(student);
+            return View(catagory);
         }
 
-        // POST: Students/Delete/5
+        // POST: Catagories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Student student = db.Students.Find(id);
-            db.Students.Remove(student);
+            Catagory catagory = db.Catagories.Find(id);
+            db.Catagories.Remove(catagory);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

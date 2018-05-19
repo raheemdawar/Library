@@ -1,0 +1,51 @@
+﻿@model LibraryProject.DataBase.Book
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Book</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Book Description")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Book Author")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookArthor)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Book Catagory Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Catagory.CatagoryName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BookID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,37 @@
+﻿@model LibraryProject.DataBase.Catagory
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+
+<div>
+    <h4>Catagory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Catagory Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CatagoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Description")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        
+
+        
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CatagoryID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

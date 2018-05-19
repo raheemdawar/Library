@@ -1,0 +1,37 @@
+﻿@model LibraryProject.DataBase.Place
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Place</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Place Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlaceName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Place Location")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlaceLocation)
+        </dd>
+
+      
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PlaceID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

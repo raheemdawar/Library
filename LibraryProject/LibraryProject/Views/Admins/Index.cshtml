@@ -1,0 +1,48 @@
+﻿@model IEnumerable<LibraryProject.DataBase.Admin>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Admin Name")
+        </th>
+        <th>
+            @Html.DisplayName("Admin Email")
+        </th>
+        <th>
+            @Html.DisplayName("Admin Password")
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.adminName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adminEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adminPassword)
+        </td>
+       
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.adminID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.adminID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.adminID })
+        </td>
+    </tr>
+}
+
+</table>

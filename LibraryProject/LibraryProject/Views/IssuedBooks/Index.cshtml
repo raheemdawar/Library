@@ -1,0 +1,49 @@
+﻿@model IEnumerable<LibraryProject.DataBase.IssuedBook>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+      
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayName("Book Name")
+        </th>
+        <th>
+            @Html.DisplayName("Student Name")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+    
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Book.BookName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student.StudentName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IssuedBookID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IssuedBookID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IssuedBookID })
+        </td>
+    </tr>
+}
+
+</table>

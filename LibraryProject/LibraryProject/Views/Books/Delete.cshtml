@@ -1,0 +1,58 @@
+﻿@model LibraryProject.DataBase.Book
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Book Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Book Description")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Book Arthor")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookArthor)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Catagory.CatagoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Catagory.CatagoryName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

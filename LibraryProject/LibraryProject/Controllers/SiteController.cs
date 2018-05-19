@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using LibraryProject.Models;
 using LibraryProject.DataAccessLayer;
 using LibraryProject.DataBase;
@@ -26,7 +22,9 @@ namespace LibraryProject.Controllers
                 Admin data = _dataAccessLayer.getAdminDetailByEmail(model.email);
                 if(data!=null)
                 {
+
                     Session["adminName"] = data.adminName;
+                    return RedirectToAction("index", "Home");
 
                 }
 

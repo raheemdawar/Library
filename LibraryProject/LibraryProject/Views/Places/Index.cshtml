@@ -1,0 +1,39 @@
+﻿@model IEnumerable<LibraryProject.DataBase.Place>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Place Name")
+        </th>
+        <th>
+            @Html.DisplayName("Place Location")
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlaceName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlaceLocation)
+        </td>
+    
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PlaceID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PlaceID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PlaceID })
+        </td>
+    </tr>
+}
+
+</table>

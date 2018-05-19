@@ -1,0 +1,45 @@
+﻿@model LibraryProject.DataBase.Admin
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Admin</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Admin Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adminName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Admin Email")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adminEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Admin Password")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adminPassword)
+        </dd>
+
+      
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.adminID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
