@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="LibraryProject.Controllers.AdminsController">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\AdminsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LibraryProject.Controllers.BookPlacesController">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\BookPlacesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LibraryProject.Controllers.BooksController">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAEACACEAAAAAAAA=</HashCode>
+      <FileName>Controllers\BooksController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LibraryProject.Controllers.CatagoriesController">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\CatagoriesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LibraryProject.Controllers.HomeController">
+    <Position X="4" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAACEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LibraryProject.Controllers.IssuedBooksController">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\IssuedBooksController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LibraryProject.Controllers.PlacesController">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\PlacesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LibraryProject.Controllers.SiteController">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAQAEAAEAA=</HashCode>
+      <FileName>Controllers\SiteController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LibraryProject.Controllers.StudentsController">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\StudentsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

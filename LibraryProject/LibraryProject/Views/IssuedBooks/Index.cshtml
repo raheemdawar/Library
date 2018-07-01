@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
+    int count = 1;
 }
 
 
@@ -10,40 +11,49 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-      
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-            @Html.DisplayName("Book Name")
-        </th>
-        <th>
-            @Html.DisplayName("Student Name")
-        </th>
-        <th></th>
-    </tr>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-topline-aqua">
 
-@foreach (var item in Model) {
-    <tr>
-    
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Book.BookName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Student.StudentName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IssuedBookID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IssuedBookID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IssuedBookID })
-        </td>
-    </tr>
-}
+            <div class="card-body ">
+                <div class="table-scrollable">
+                    <table id="example1" class="display" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Book Name</th>
+                                <th>Student Name</th>
+                                <th>Reg No.</th>
+                                <th>Status</th>
+                                <th>Rturn Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>@count</td>
+                                <td>@item.Book.BookName</td>
+                                <td>@item.Student.StudentName</td>
+                                <td>@item.Student.StudentRegistrationNumber</td>
+                                <td>@item.Status</td>
+                                <td>123456</td>
+                                <td>
+                                    <a href="/IssuedBooks/edit/@item.IssuedBookID">Update</a>
+                                    <a href="/IssuedBooks/delete/@item.IssuedBookID">   Delete</a>
 
-</table>
+                                </td>
+                            </tr>
+                                count++;
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

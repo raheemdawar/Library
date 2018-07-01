@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
+    int count = 1;
 }
 
 
@@ -10,39 +11,45 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-    
-        <th>
-            @Html.DisplayName("Extra Loction Info")
-        </th>
-        <th>
-            @Html.DisplayName("Book Name")
-        </th>
-        <th>
-            @Html.DisplayName("Place Name")
-        </th>
-        <th></th>
-    </tr>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-topline-aqua">
 
-@foreach (var item in Model) {
-    <tr>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.ExtraLocationInfo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Book.BookName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Place.PlaceName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BookPlaceID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BookPlaceID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BookPlaceID })
-        </td>
-    </tr>
-}
+            <div class="card-body ">
+                <div class="table-scrollable">
+                    <table id="example1" class="display" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Place</th>
+                                <th>Description</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>@count</td>
+                                <td>@item.Book.BookName</td>
+                                <td>@item.Place.PlaceName</td>
+                                <td>@item.ExtraLocationInfo</td>
+                                <td>
+                                    <a href="/BookPlaces/edit/@item.BookPlaceID">Update</a>
+                                    <a href="/BookPlaces/delete/@item.BookPlaceID">   Delete</a>
 
-</table>
+                                </td>
+                            </tr>
+                                count++;
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

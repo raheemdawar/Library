@@ -11,7 +11,7 @@ using LibraryProject.DataBase;
 
 namespace LibraryProject.Controllers
 {
-    [AuthorizationFilter]
+   // [AuthorizationFilter]
     public class BooksController : Controller
     {
         private LiabraryEntities db = new LiabraryEntities();
@@ -129,6 +129,11 @@ namespace LibraryProject.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public ActionResult search()
+        {
+            var books = db.Books.Include(b => b.Catagory);
+            return View(books.ToList());
         }
     }
 }

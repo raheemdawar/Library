@@ -3,39 +3,51 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
+    int count = 1;
 }
 
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("Catagory Name")
-        </th>
-        <th>
-            @Html.DisplayName("Description")
-        </th>
-     
-        <th></th>
-    </tr>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-topline-aqua">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CatagoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-       
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CatagoryID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CatagoryID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CatagoryID })
-        </td>
-    </tr>
-}
+            <div class="card-body ">
+                <div class="table-scrollable">
+                    <table id="example1" class="display" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@count</td>
+                                    <td>@item.CatagoryName</td>
+                                    <td>@item.Description</td>
+                                   
+                                    <td>
+                                        <a href="/Catagories/edit/@item.CatagoryID">Update</a>
+                                        <a href="/Catagories/delete/@item.CatagoryID">   Delete</a>
 
-</table>
+                                    </td>
+                                </tr>
+                                count++;
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

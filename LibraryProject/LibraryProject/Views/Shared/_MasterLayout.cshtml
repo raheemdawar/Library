@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
- 
-    
+
+
     <title>Comsats University Library</title>
     <!-- google font -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
@@ -13,6 +13,7 @@
     <link href="~/Content/fonts/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/fonts/material-design-icons/material-icon.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <!--bootstrap -->
     <link href="~/Content/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Material Design Lite CSS -->
@@ -24,7 +25,7 @@
     <link href="~/Content/assets/css/plugins.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/assets/css/responsive.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/assets/css/theme/light/theme-color.css" rel="stylesheet" type="text/css" />
- </head>
+</head>
 <!-- END HEAD -->
 <body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
     <div class="page-wrapper">
@@ -42,16 +43,7 @@
                 <ul class="nav navbar-nav navbar-left in">
                     <li><a href="#" class="menu-toggler sidebar-toggler"><i class="icon-menu"></i></a></li>
                 </ul>
-                <form class="search-form-opened" action="#" method="GET">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search..." name="query">
-                        <span class="input-group-btn">
-                            <a href="javascript:;" class="btn submit">
-                                <i class="icon-magnifier"></i>
-                            </a>
-                        </span>
-                    </div>
-                </form>
+              
                 <!-- start mobile menu -->
                 <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
                     <span></span>
@@ -64,28 +56,13 @@
                         <!-- start manage user dropdown -->
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                
+
                                 <span class="username username-hide-on-mobile"> Admin </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-user"></i> Profile
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-settings"></i> Settings
-                                    </a>
-                                </li>
                                
-                                <li class="divider"> </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-lock"></i> Lock
-                                    </a>
-                                </li>
+                      
                                 <li>
                                     <a href="/Site/Logout">
                                         <i class="icon-logout"></i> Log Out
@@ -94,13 +71,12 @@
                             </ul>
                         </li>
                         <!-- end manage user dropdown -->
-                       
+
                     </ul>
                 </div>
             </div>
         </div>
         <!-- end header -->
-      
         <!-- start page container -->
         <div class="page-container">
             <!-- start sidebar menu -->
@@ -113,8 +89,8 @@
                                     <span></span>
                                 </div>
                             </li>
-                       
-                            
+
+
                             <li class="nav-item">
                                 <a href="/Home/index" class="nav-link nav-toggle">
                                     <i class="material-icons">event</i>
@@ -137,17 +113,17 @@
                                             <span class="title">Add Student</span>
                                         </a>
                                     </li>
-                                 
-                                   
-                               
+
+
+
                                 </ul>
                             </li>
-                          
+
                             <li class="nav-item">
                                 <a href="#" class="nav-link nav-toggle">
                                     <i class="material-icons">school</i>
                                     <span class="title">Books</span> <span class="arrow"></span>
-                                  
+
                                 </a>
                                 <ul class="sub-menu">
                                     <li class="nav-item">
@@ -160,11 +136,7 @@
                                             <span class="title">All Book Catagories</span>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="/Home/search" class="nav-link ">
-                                            <span class="title">Search Book</span>
-                                        </a>
-                                    </li>
+                                   
                                     <li class="nav-item">
                                         <a href="/BookPlaces/index" class="nav-link ">
                                             <span class="title">All Book Places</span>
@@ -198,11 +170,11 @@
                                             <span class="title">Add Library Place</span>
                                         </a>
                                     </li>
-                            
-                                    
+
+
                                 </ul>
                             </li>
-                         
+
                             <li class="nav-item">
                                 <a href="#" class="nav-link nav-toggle">
                                     <i class="material-icons">face</i>
@@ -219,11 +191,11 @@
                                             <span class="title">Add Admin</span>
                                         </a>
                                     </li>
-                                  
+
                                 </ul>
                             </li>
-                          
-                         
+
+
                         </ul>
                     </div>
                 </div>
@@ -232,45 +204,45 @@
             <!-- start page content -->
             <div class="page-content-wrapper">
                 <div class="page-content">
-                  @RenderBody()
-                    </div>
-                    <!-- add content here -->
+                    @RenderBody()
                 </div>
-            </div>
-            <!-- end page content -->
-            <!-- start chat sidebar -->
-            <div class="chat-sidebar-container" data-close-on-body-click="false">
-                <div class="chat-sidebar">
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                            <a href="#quick_sidebar_tab_1" class="nav-link active tab-icon" data-toggle="tab">
-                                <i class="material-icons">chat</i>Chat
-                                <span class="badge badge-danger">4</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#quick_sidebar_tab_3" class="nav-link tab-icon" data-toggle="tab">
-                                <i class="material-icons">settings</i> Settings
-                            </a>
-                        </li>
-                    </ul>
-                    
-                </div>
-            </div>
-            <!-- end chat sidebar -->
-        </div>
-        <!-- end page container -->
-        <!-- start footer -->
-        <div class="page-footer">
-            <div class="page-footer-inner">
-                2018 &copy; Comsats Abbottabad
-                
-            </div>
-            <div class="scroll-to-top">
-                <i class="icon-arrow-up"></i>
+                <!-- add content here -->
             </div>
         </div>
-        <!-- end footer -->
+        <!-- end page content -->
+        <!-- start chat sidebar -->
+        <div class="chat-sidebar-container" data-close-on-body-click="false">
+            <div class="chat-sidebar">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a href="#quick_sidebar_tab_1" class="nav-link active tab-icon" data-toggle="tab">
+                            <i class="material-icons">chat</i>Chat
+                            <span class="badge badge-danger">4</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#quick_sidebar_tab_3" class="nav-link tab-icon" data-toggle="tab">
+                            <i class="material-icons">settings</i> Settings
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <!-- end chat sidebar -->
+    </div>
+    <!-- end page container -->
+    <!-- start footer -->
+    <div class="page-footer">
+        <div class="page-footer-inner">
+            2018 &copy; Comsats Abbottabad
+
+        </div>
+        <div class="scroll-to-top">
+            <i class="icon-arrow-up"></i>
+        </div>
+    </div>
+    <!-- end footer -->
     </div>
     <!-- start js include path -->
     <script src="~/Content/assets/plugins/jquery/jquery.min.js"></script>
@@ -280,12 +252,21 @@
     <!-- bootstrap -->
     <script src="~/Content/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/Content/assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <!-- data tables -->
+    <script src="~/Content/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Content/assets/js/pages/table/table_data.js"></script>
     <!-- Common js-->
     <script src="~/Content/assets/js/app.js"></script>
     <script src="~/Content/assets/js/layout.js"></script>
     <script src="~/Content/assets/js/theme-color.js"></script>
     <!-- Material -->
-    <script src="~/Content/assets/plugins/material/material.min.js"></script>
+
+
+    <script src="~/Content/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Content/assets/js/pages/table/table_data.js"></script>
+
     <!-- end js include path -->
 </body>
 

@@ -3,46 +3,53 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
+    int count = 1;
 }
 
-<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("Admin Name")
-        </th>
-        <th>
-            @Html.DisplayName("Admin Email")
-        </th>
-        <th>
-            @Html.DisplayName("Admin Password")
-        </th>
-       
-        <th></th>
-    </tr>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-topline-aqua">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.adminName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.adminEmail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.adminPassword)
-        </td>
-       
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.adminID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.adminID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.adminID })
-        </td>
-    </tr>
-}
+            <div class="card-body ">
+                <div class="table-scrollable">
+                    <table id="example1" class="display" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                               
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@count</td>
+                                    <td>@item.adminName</td>
+                                    <td>@item.adminEmail</td>
+                                    
+                                    <td>
+                                        <a href="/Admins/edit/@item.adminID">Update</a>
+                                        <a href="/Admins/delete/@item.adminID">   Delete</a>
 
-</table>
+                                    </td>
+                                </tr>
+                                count++;
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

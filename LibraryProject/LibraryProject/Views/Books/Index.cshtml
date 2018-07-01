@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
+    int count = 1;
 }
 
 
@@ -10,45 +11,48 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("Name")
-        </th>
-        <th>
-            @Html.DisplayName("Description")
-        </th>
-        <th>
-            @Html.DisplayName("Author")
-        </th>
-        
-        <th>
-            @Html.DisplayName("Catagory Name")
-        </th>
-        <th></th>
-    </tr>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-topline-aqua">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BookName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BookDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BookArthor)
-        </td>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.Catagory.CatagoryName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BookID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BookID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BookID })
-        </td>
-    </tr>
-}
+            <div class="card-body ">
+                <div class="table-scrollable">
+                    <table id="example1" class="display" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Author</th>
+                                <th>Book Catagory</th>
 
-</table>
+                                <th>Description</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@count</td>
+                                    <td>@item.BookName</td>
+                                    <td>@item.BookArthor</td>
+                                    <td>@item.Catagory.CatagoryName</td>
+                                    <td>@item.BookDescription</td>
+                                    <td>
+                                        <a href="/Books/edit/@item.BookID">Update</a>
+                                        <a href="/Books/delete/@item.BookID">   Delete</a>
+
+                                    </td>
+                                </tr>
+                                count++;
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@model List<LibraryProject.DataBase.Book>
+@{
+    ViewBag.Title = "search";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-topline-aqua">
+
+            <div class="card-body ">
+                <div class="table-scrollable">
+                    <table id="example1" class="display" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Position</th>
+                                <th>Office</th>
+                                <th>Age</th>
+                                <th>Start date</th>
+                                <th>Salary</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                           {
+                        <tr>
+                            <td>@item.BookName</td>
+                            <td>@item.BookDescription</td>
+                            <td>@item.BookArthor</td>
+                           
+                            <td>Book Status</td>
+                            <td>Create Date/td>
+                            <td>$320,800</td>
+                        </tr>
+}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
